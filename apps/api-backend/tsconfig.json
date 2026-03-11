@@ -1,5 +1,5 @@
 {
-  "extends": "@workspace/typescript-config/nestjs.json",
+  "extends": "../../packages/typescript-config/nestjs.json",
   "compilerOptions": {
     "module": "nodenext",
     "moduleResolution": "nodenext",
@@ -28,7 +28,7 @@
       "@workspace/database/*": ["../../packages/database/src/*"],
       "@/*": ["./src/*"]
     },
-    "include": ["src/**/*.ts"],
+  },
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
-  }
 }
