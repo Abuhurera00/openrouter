@@ -6,10 +6,10 @@ export type ProviderDocument = HydratedDocument<Provider>;
 @Schema({ timestamps: true })
 export class Provider {
   @Prop({ required: true })
-  name: string;
+  name!: string;
 
   @Prop({ required: true })
-  website: string;
+  website!: string;
 }
 
 export const ProviderSchema = SchemaFactory.createForClass(Provider);

@@ -6,17 +6,17 @@ export type ModelProviderMappingDocument = HydratedDocument<ModelProviderMapping
 @Schema({ timestamps: true })
 export class ModelProviderMapping {
   @Prop({ type: Types.ObjectId, ref: 'Model', required: true })
-  modelId: Types.ObjectId;
+  modelId!: Types.ObjectId;
 
   @Prop({ type: Types.ObjectId, ref: 'Provider', required: true })
-  providerId: Types.ObjectId;
+  providerId!: Types.ObjectId;
 
   // Cost in micro-credits per token (store as integers to avoid float issues)
   @Prop({ required: true })
-  inputTokenCost: number;
+  inputTokenCost!: number;
 
   @Prop({ required: true })
-  outputTokenCost: number;
+  outputTokenCost!: number;
 }
 
 export const ModelProviderMappingSchema = SchemaFactory.createForClass(ModelProviderMapping);

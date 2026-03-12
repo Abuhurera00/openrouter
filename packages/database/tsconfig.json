@@ -1,11 +1,18 @@
 {
-    "extends": "@workspace/typescript-config/nestjs.json",
-    "compilerOptions": {
-      "baseUrl": ".",
-      "paths": {
-        "@workspace/database": ["./src/index.ts"]
-      }
-    },
-    "include": ["src/**/*.ts"],
-    "exclude": ["node_modules", "dist"]
-  }
+  "extends": "@workspace/typescript-config/nestjs.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "tsBuildInfoFile": "dist/.tsbuildinfo",
+    "declaration": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "nodenext",
+    "strictNullChecks": true   // <-- this is the key fix
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
+
+ // "build": "tsc",
+  // "dev": "tsc -w",

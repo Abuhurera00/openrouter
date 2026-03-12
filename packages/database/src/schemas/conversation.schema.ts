@@ -9,25 +9,25 @@ export type ConversationDocument = HydratedDocument<Conversation>;
 @Schema({ timestamps: true })
 export class Conversation {
   @Prop({ type: Types.ObjectId, ref: 'User', required: true })
-  userId: Types.ObjectId;
+  userId!: Types.ObjectId;
 
   @Prop({ type: Types.ObjectId, ref: 'ApiKey', required: true })
-  apiKeyId: Types.ObjectId;
+  apiKeyId!: Types.ObjectId;
 
   @Prop({ type: Types.ObjectId, ref: 'ModelProviderMapping', required: true })
-  modelProviderMappingId: Types.ObjectId;
+  modelProviderMappingId!: Types.ObjectId;
 
   @Prop({ required: true })
-  input: string;
+  input!: string;
 
   @Prop({ required: true })
-  output: string;
+  output!: string;
 
   @Prop({ required: true })
-  inputTokenCount: number;
+  inputTokenCount!: number;
 
   @Prop({ required: true })
-  outputTokenCount: number;
+  outputTokenCount!: number;
 }
 
 export const ConversationSchema = SchemaFactory.createForClass(Conversation);

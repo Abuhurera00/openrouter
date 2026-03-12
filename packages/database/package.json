@@ -2,18 +2,19 @@
   "name": "@workspace/database",
   "version": "0.0.1",
   "private": true,
-  "main": "./src/index.ts",
-  "exports": {
-    ".": "./src/index.ts"
-  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+"exports": {
+  ".": "./dist/index.js"
+},
   "scripts": {
-    "lint": "eslint .",
-    "check-types": "tsc --noEmit"
-  },
+  "lint": "eslint .",
+  "check-types": "tsc --noEmit"
+},
   "dependencies": {
-    "@nestjs/common": "^11.0.1",
-    "@nestjs/mongoose": "^11.0.1",
-    "mongoose": "^8.11.0"
+    "@nestjs/common": "^11.1.16",
+    "@nestjs/mongoose": "^11.0.4",
+    "mongoose": "^9.3.0"
   },
   "devDependencies": {
     "@workspace/typescript-config": "workspace:*",

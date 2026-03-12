@@ -12,17 +12,17 @@ export enum TransactionStatus {
 @Schema({ timestamps: true })
 export class OnrampTransaction {
   @Prop({ type: Types.ObjectId, ref: 'User', required: true })
-  userId: Types.ObjectId;
+  userId!: Types.ObjectId;
 
   @Prop({ required: true })
-  amount: number;
+  amount!: number;
 
   @Prop({
     required: true,
     enum: TransactionStatus,
     default: TransactionStatus.PENDING,
   })
-  status: TransactionStatus;
+  status!: TransactionStatus;
 }
 
 export const OnrampTransactionSchema = SchemaFactory.createForClass(OnrampTransaction);

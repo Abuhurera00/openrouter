@@ -6,13 +6,13 @@ export type ModelDocument = HydratedDocument<Model>;
 @Schema({ timestamps: true })
 export class Model {
   @Prop({ required: true })
-  name: string;
+  name!: string;
 
   @Prop({ required: true, unique: true })
-  slug: string;
+  slug!: string;
 
   @Prop({ type: Types.ObjectId, ref: 'Company', required: true })
-  companyId: Types.ObjectId;
+  companyId!: Types.ObjectId;
 }
 
 export const ModelSchema = SchemaFactory.createForClass(Model);
