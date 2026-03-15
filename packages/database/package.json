@@ -4,20 +4,24 @@
   "private": true,
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-"exports": {
-  ".": "./dist/index.js"
-},
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "scripts": {
-  "lint": "eslint .",
-  "check-types": "tsc --noEmit"
-},
+    "build": "tsc",
+    "lint": "eslint .",
+    "check-types": "tsc --noEmit"
+  },
   "dependencies": {
     "@nestjs/common": "^11.1.16",
     "@nestjs/mongoose": "^11.0.4",
     "mongoose": "^9.3.0"
   },
   "devDependencies": {
-    "@workspace/typescript-config": "workspace:*",
+    "@types/node": "^25.5.0",
     "typescript": "5.9.2"
   }
 }

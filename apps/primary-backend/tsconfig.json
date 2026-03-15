@@ -1,5 +1,4 @@
 {
-  // "extends": "../../packages/typescript-config/nestjs.json",
   "compilerOptions": {
     "module": "nodenext",
     "moduleResolution": "nodenext",
@@ -22,12 +21,10 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
     "baseUrl": "./",
-    // "paths": {
-    //   "@workspace/database": ["../../packages/database/src/index.ts"],
-    //   "@workspace/database/*": ["../../packages/database/src/*"],
-    //   "@/*": ["./src/*"]
-    // }
-  },
-  // "include": ["src/**/*.ts"],
-  // "exclude": ["node_modules", "dist"]
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  }
 }
