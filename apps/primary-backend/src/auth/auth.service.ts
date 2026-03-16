@@ -61,8 +61,7 @@ export class AuthService {
             email: user.email,
         });
 
-        const userWithoutPassword = user.toObject();
-        delete (userWithoutPassword as { password?: string }).password;
+        const { password: _, ...userWithoutPassword } = user;
 
         return {
             token,
