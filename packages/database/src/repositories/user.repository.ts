@@ -7,8 +7,8 @@ import { BaseRepository } from './base.repository';
 @Injectable()
 export class UserRepository extends BaseRepository<UserDocument> {
   constructor(
-    @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
+    @InjectModel(User.name) model: Model<UserDocument>,
   ) {
-    super(userModel);
+    super(model);
   }
 }
