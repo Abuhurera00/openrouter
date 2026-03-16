@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { DatabaseModule } from '@workspace/database';
-import configuration from './config/configuration';
-import { envValidationSchema } from './config/env.validation';
-import { AppConfig } from './config/app.config';
+import configuration from './common/config/configuration';
+import { envValidationSchema } from './common/config/env.validation';
+import { AppConfig } from './common/config/app.config';
 
 @Module({
   imports: [
@@ -24,4 +24,4 @@ import { AppConfig } from './config/app.config';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }
