@@ -13,7 +13,7 @@ async function bootstrap() {
     },
   );
 
-    const options = new DocumentBuilder()
+  const options = new DocumentBuilder()
     .setTitle('API')
     .setDescription('API docs')
     .setVersion('1.0')
