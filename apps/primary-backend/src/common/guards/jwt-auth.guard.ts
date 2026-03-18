@@ -5,13 +5,13 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UserRepository } from '@workspace/database';
+// import { UserRepository } from '@workspace/database';
 
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
   constructor(
     private jwtService: JwtService,
-    private readonly userRepo: UserRepository,
+    // private readonly userRepo: UserRepository,
   ) { }
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -25,11 +25,11 @@ export class JwtAuthGuard implements CanActivate {
     try {
       const decoded = await this.jwtService.verifyAsync(token);
 
-      const user = await this.userRepo.findById(decoded._id, { password: 0 });
+      // const user = await this.userRepo.findById(decoded._id, { password: 0 });
 
-      if (!user) throw new UnauthorizedException('User not found');
+      // if (!user) throw new UnauthorizedException('User not found');
 
-      req.user = user;
+      req.user = decoded;
       return true;
     } catch (e) {
       throw new UnauthorizedException('Invalid or expired token');

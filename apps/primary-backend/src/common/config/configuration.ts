@@ -17,6 +17,11 @@ export default () => ({
     expiresIn: process.env.JWT_EXPIRES || "7d",
   },
 
+  apiKey: {
+    length: parseInt(process.env.API_KEY_LENGTH ?? '20', 10),
+    alphabetSet: process.env.ALPHABET_SET,
+  }
+
   // redis: {
   //   url: process.env.REDIS_URL,
   // },
