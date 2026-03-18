@@ -1,10 +1,12 @@
 import { NestFactory } from '@nestjs/core';
+import * as cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.use(cookieParser.default());
   const configService = app.get(ConfigService);
   app.setGlobalPrefix(
     configService.get<string>('app.apiPrefix', { infer: true }) || 'api',
@@ -13,7 +15,7 @@ async function bootstrap() {
     },
   );
 
-    const options = new DocumentBuilder()
+  const options = new DocumentBuilder()
     .setTitle('API')
     .setDescription('API docs')
     .setVersion('1.0')

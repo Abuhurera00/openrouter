@@ -57,7 +57,7 @@ export class AuthService {
 
         // Create JWT token
         const token = this.jwtService.sign({
-            userId: user._id,
+            _id: user._id,
             email: user.email,
         });
 
@@ -68,4 +68,13 @@ export class AuthService {
             user: userWithoutPassword
         }
     }
+
+    async getUserDetails(id: string) {
+        const user = await this.userRepo.findById(id, { password: 0 });
+        if (!user) {
+            throw new ConflictException("User not found");
+        }
+        return user;
+    }
+
 }
