@@ -1,14 +1,15 @@
-import { Body, Controller, Logger, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthUserDto } from './dto/auth-user.dto';
 import { AuthService } from './auth.service';
 import { ApiTags } from '@nestjs/swagger';
 import type { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
+import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
+import { CurrentUser } from '@/common/decorators/current-user.decorator';
 
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
-    private readonly logger = new Logger(AuthController.name);
     constructor(
         private readonly service: AuthService,
         private readonly configService: ConfigService,
@@ -25,10 +26,6 @@ export class AuthController {
 
         const isProduction = this.configService.get<string>('app.nodeEnv') === 'production';
 
-        this.logger.debug(
-            `Setting auth cookie with token: ${token} (production: ${isProduction})`,
-        );
-
         res.cookie('auth', token, {
             httpOnly: true,
             secure: isProduction,
@@ -40,5 +37,11 @@ export class AuthController {
             message: 'Signed in successfully',
             user,
         };
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Get('profile')
+    async getProfile(@CurrentUser() user) {
+        return user;
     }
 }

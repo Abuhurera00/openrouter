@@ -68,4 +68,13 @@ export class AuthService {
             user: userWithoutPassword
         }
     }
+
+    async getUserDetails(id: string) {
+        const user = await this.userRepo.findById(id, { password: 0 });
+        if (!user) {
+            throw new ConflictException("User not found");
+        }
+        return user;
+    }
+
 }
