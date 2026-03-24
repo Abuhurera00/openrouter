@@ -12,7 +12,7 @@ export class ModelsService {
     async getModels() {
         const models = await this.modelRepository.findAll({}, {}, { populate: 'companyId' });
         return {
-            data: models,
+            models,
             message: "Models retrieved successfully",
         };
     }
@@ -20,7 +20,7 @@ export class ModelsService {
     async getProviders() {
         const providers = await this.providerRepository.findAll({});
         return {
-            data: providers,
+            providers,
             message: "Providers retrieved successfully",
         };
     }
@@ -28,7 +28,7 @@ export class ModelsService {
     async getModelProviders(id: string) {
         const modelProviders = await this.modelProviderMappingRepository.findAll({ modelId: id }, {}, { populate: ['modelId', 'providerId'] });
         return {
-            data: modelProviders,
+            providers: modelProviders,
             message: "Model providers retrieved successfully",
         };
     }

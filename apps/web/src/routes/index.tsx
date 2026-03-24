@@ -9,8 +9,13 @@ import ProtectedLayout from "@/layouts/protected-layout";
 import ApiKeys from "@/pages/apiKeys";
 import Credits from "@/pages/credits";
 import NotFound from "@/pages/notFound";
+import { Landing } from "@/pages/landing";
 
 export const routes: RouteObject[] = [
+    {
+        path: PATH.LANDING,
+        element: <Landing />,
+    },
     {
         path: PATH.LOGIN,
         element: <SignIn />,
@@ -19,10 +24,10 @@ export const routes: RouteObject[] = [
         path: PATH.SIGN_UP,
         element: <SignUp />,
     },
-    {
-        path: "/",
-        element: <Navigate to={PATH.LOGIN} replace />,
-    },
+    // {
+    //     path: "/",
+    //     element: <Navigate to={PATH.LOGIN} replace />,
+    // },
 
     {
         element: <ProtectedLayout />,

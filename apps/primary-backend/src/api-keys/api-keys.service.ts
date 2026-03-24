@@ -36,9 +36,9 @@ export class ApiKeysService {
     }
 
     async getApiKeys(userId: Types.ObjectId) {
-        const apiKeys = await this.apiKeyRepo.findAll({ userId, deleted: false });
+        const apiKeys = await this.apiKeyRepo.findAll({ userId, deleted: false }, {}, { sort: { createdAt: -1 } });
         return {
-            data: apiKeys,
+            apiKeys,
             message: "API keys retrieved successfully",
         };
     }

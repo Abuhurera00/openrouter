@@ -6,4 +6,5 @@ export const PATH = {
     LOGIN: "/login",
     SIGN_UP: "/signup",
     CREDITS: "/credits",
+    LANDING: "/",
 }

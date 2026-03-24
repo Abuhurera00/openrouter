@@ -8,8 +8,13 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(cookieParser.default());
   const configService = app.get(ConfigService);
+  const allowOrigins = configService.get<string>('app.allowOrigins', { infer: true })?.split(',') || [];
+  app.enableCors({
+    origin: allowOrigins,
+    credentials: true,
+  });
+  app.use(cookieParser.default());
   app.setGlobalPrefix(
     configService.get<string>('app.apiPrefix', { infer: true }) || 'api',
     {
@@ -19,7 +24,6 @@ async function bootstrap() {
 
   app.useGlobalInterceptors(new ResponseInterceptor());
 
-  // ✅ Global error formatting
   app.useGlobalFilters(new HttpExceptionFilter());
 
 

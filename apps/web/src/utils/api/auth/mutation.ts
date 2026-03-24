@@ -10,3 +10,11 @@ export function useSignInMutation(options?: any) {
         ...options,
     });
 }
+
+export function useSignUpMutation(options?: any) {
+    return useMutation<ApiResponse, Error, SignInData>({
+        mutationKey: [AUTH_TAGS.SIGN_UP],
+        mutationFn: authService.signUp,
+        ...options,
+    });
+}

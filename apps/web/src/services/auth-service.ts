@@ -16,24 +16,8 @@ export const authService = {
         const response = await api.post<ApiResponse>(API_ENDPOINTS.AUTH.SIGN_UP, data);
         const result = response.data;
 
-        // if (result.success && result.data.token) {
-        //     localStorage.setItem(TOKEN_KEY, result.data.token);
-        // }
-
         return result;
     },
-
-    // getToken: () => {
-    //     return localStorage.getItem(TOKEN_KEY);
-    // },
-
-    // setToken: (token: string) => {
-    //     localStorage.setItem(TOKEN_KEY, token);
-    // },
-
-    // isAuthenticated: () => {
-    //     return !!localStorage.getItem(TOKEN_KEY);
-    // },
 
     getMe: async (): Promise<ApiResponse> => {
         const response = await api.get<ApiResponse>(API_ENDPOINTS.AUTH.PROFILE);
