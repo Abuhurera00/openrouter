@@ -32,7 +32,10 @@ export class AuthService {
             if (!createdUser) {
                 throw new ConflictException("User creation failed");
             }
-            return createdUser;
+            return {
+                data: createdUser,
+                message: "User created successfully",
+            };
         } catch (err) {
             if (err.code === 11000) {
                 throw new ConflictException('Email already exists');
@@ -74,7 +77,10 @@ export class AuthService {
         if (!user) {
             throw new ConflictException("User not found");
         }
-        return user;
+        return {
+            data: user,
+            message: "User fetched successfully",
+        };
     }
 
 }

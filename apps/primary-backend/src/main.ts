@@ -3,6 +3,8 @@ import * as cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ResponseInterceptor } from './common/interceptors/response.interceptor';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,6 +16,12 @@ async function bootstrap() {
       exclude: ['/'],
     },
   );
+
+  app.useGlobalInterceptors(new ResponseInterceptor());
+
+  // ✅ Global error formatting
+  app.useGlobalFilters(new HttpExceptionFilter());
+
 
   const options = new DocumentBuilder()
     .setTitle('API')

@@ -29,22 +29,37 @@ export class ApiKeysService {
             apiKey,
             userId
         });
-        return createdApiKey;
+        return {
+            data: createdApiKey,
+            message: "API key created successfully",
+        };
     }
 
     async getApiKeys(userId: Types.ObjectId) {
-        return this.apiKeyRepo.findAll({ userId, deleted: false });
+        const apiKeys = await this.apiKeyRepo.findAll({ userId, deleted: false });
+        return {
+            data: apiKeys,
+            message: "API keys retrieved successfully",
+        };
     }
 
     async updateApiKey(id: string, dto: UpdateApiKeyDto, userId: Types.ObjectId) {
-        return this.apiKeyRepo.updateOne(
+        const updatedApiKey = await this.apiKeyRepo.updateOne(
             { _id: id, userId },
             { $set: dto },
         );
+        return {
+            data: updatedApiKey,
+            message: "API key updated successfully",
+        };
     }
 
 
     async delete(id: string, userId: Types.ObjectId) {
-        return this.apiKeyRepo.updateOne({ _id: id, userId }, { deleted: true });
+        const deletedApiKey = await this.apiKeyRepo.updateOne({ _id: id, userId }, { deleted: true });
+        return {
+            data: deletedApiKey,
+            message: "API key deleted successfully",
+        };
     }
 }

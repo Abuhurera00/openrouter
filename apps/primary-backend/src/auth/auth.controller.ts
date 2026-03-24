@@ -35,7 +35,7 @@ export class AuthController {
 
         return {
             message: 'Signed in successfully',
-            user,
+            data: user,
         };
     }
 
