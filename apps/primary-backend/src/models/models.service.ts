@@ -10,14 +10,26 @@ export class ModelsService {
     ) { }
 
     async getModels() {
-        return this.modelRepository.findAll({}, {}, { populate: 'companyId' });
+        const models = await this.modelRepository.findAll({}, {}, { populate: 'companyId' });
+        return {
+            models,
+            message: "Models retrieved successfully",
+        };
     }
 
     async getProviders() {
-        return this.providerRepository.findAll({});
+        const providers = await this.providerRepository.findAll({});
+        return {
+            providers,
+            message: "Providers retrieved successfully",
+        };
     }
 
     async getModelProviders(id: string) {
-        return this.modelProviderMappingRepository.findAll({ modelId: id }, {}, { populate: ['modelId', 'providerId'] });
+        const modelProviders = await this.modelProviderMappingRepository.findAll({ modelId: id }, {}, { populate: ['modelId', 'providerId'] });
+        return {
+            providers: modelProviders,
+            message: "Model providers retrieved successfully",
+        };
     }
 }

@@ -3,17 +3,29 @@ import * as cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ResponseInterceptor } from './common/interceptors/response.interceptor';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(cookieParser.default());
   const configService = app.get(ConfigService);
+  const allowOrigins = configService.get<string>('app.allowOrigins', { infer: true })?.split(',') || [];
+  app.enableCors({
+    origin: allowOrigins,
+    credentials: true,
+  });
+  app.use(cookieParser.default());
   app.setGlobalPrefix(
     configService.get<string>('app.apiPrefix', { infer: true }) || 'api',
     {
       exclude: ['/'],
     },
   );
+
+  app.useGlobalInterceptors(new ResponseInterceptor());
+
+  app.useGlobalFilters(new HttpExceptionFilter());
+
 
   const options = new DocumentBuilder()
     .setTitle('API')

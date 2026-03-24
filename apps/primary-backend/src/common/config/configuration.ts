@@ -1,6 +1,7 @@
 export default () => ({
   app: {
     nodeEnv: process.env.NODE_ENV || 'development',
+    allowOrigins: process.env.APP_ALLOW_ORIGINS,
     apiPrefix: process.env.APP_API_PREFIX,
     port: parseInt(process.env.APP_PORT ?? '3000', 10),
     name: process.env.APP_NAME,
