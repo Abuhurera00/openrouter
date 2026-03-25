@@ -21,6 +21,12 @@ export default () => ({
   apiKey: {
     length: parseInt(process.env.API_KEY_LENGTH ?? '20', 10),
     alphabetSet: process.env.ALPHABET_SET,
+  },
+
+  llmApiKey: {
+    openai: process.env.OPENAI_API_KEY,
+    anthropic: process.env.ANTHROPIC_API_KEY,
+    google: process.env.GOOGLE_API_KEY,
   }
 
   // redis: {

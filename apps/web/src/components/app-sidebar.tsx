@@ -17,10 +17,8 @@ import {
     SidebarRail,
 } from "@workspace/ui/components/sidebar"
 import { PATH } from "@/lib/path"
-import useAuthStore from "@/store/useAuthStore"
 import { useGetUserProfile } from "@/utils/api/auth/queries"
 
-// This is sample data.
 const data = {
     app: [
         {

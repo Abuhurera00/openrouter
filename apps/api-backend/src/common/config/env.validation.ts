@@ -13,6 +13,9 @@ export const envValidationSchema = Joi.object({
   JWT_EXPIRES: Joi.string().default('7d'),
   API_KEY_LENGTH: Joi.number().default(20),
   ALPHABET_SET: Joi.string().default('zxcvbnmasdfghjklqwertyuiopZXCVBNMASDFGHJKLQWERTYUIOP1234567890'),
+  OPENAI_API_KEY: Joi.string().required(),
+  ANTHROPIC_API_KEY: Joi.string().required(),
+  GOOGLE_API_KEY: Joi.string().required(),
 
   //   REDIS_URL: Joi.string().required(),
 });
