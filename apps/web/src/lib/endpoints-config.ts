@@ -14,4 +14,7 @@ export const API_ENDPOINTS = {
     MODELS: {
         GET: "/models",
     },
+    PAYMENTS: {
+        ONRAMP_CREDITS: "/payments/onramp",
+    },
 };

@@ -4,7 +4,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { DatabaseModule } from '@workspace/database';
 import configuration from './common/config/configuration';
 import { envValidationSchema } from './common/config/env.validation';
-import { AppConfig } from './common/config/app.config';
 
 @Module({
   imports: [
@@ -16,7 +15,7 @@ import { AppConfig } from './common/config/app.config';
     MongooseModule.forRootAsync({
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
-        uri: configService.get<AppConfig['database']['mongoUri']>('database.mongoUri'),
+        uri: configService.get<string>('database.mongoUri'),
       }),
     }),
     DatabaseModule,
