@@ -3,7 +3,7 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-    useSidebar,
+    // useSidebar,
 } from "@workspace/ui/components/sidebar"
 
 export function AppSidebarHeader({
@@ -15,8 +15,8 @@ export function AppSidebarHeader({
         version: string
     }[]
 }) {
-    const { isMobile } = useSidebar()
-    const [activeTeam, setActiveTeam] = React.useState(app[0])
+    // const { isMobile } = useSidebar()
+    const [activeTeam, _setActiveTeam] = React.useState(app[0])
 
     if (!activeTeam) {
         return null

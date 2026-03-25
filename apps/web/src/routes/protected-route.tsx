@@ -8,7 +8,7 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute = ({
-    userTypes = ["user"],
+    // userTypes = ["user"],
     redirectTo = "/login",
 }: ProtectedRouteProps) => {
     const { isAuthenticated, isLoading } = useAuthStore();

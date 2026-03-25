@@ -4,6 +4,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { DatabaseModule } from '@workspace/database';
 import configuration from './common/config/configuration';
 import { envValidationSchema } from './common/config/env.validation';
+import { LlmModule } from './llm/llm.module';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
@@ -19,6 +21,8 @@ import { envValidationSchema } from './common/config/env.validation';
       }),
     }),
     DatabaseModule,
+    LlmModule,
+    ChatModule,
   ],
   controllers: [],
   providers: [],

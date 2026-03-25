@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import {
     Card,
     CardHeader,
@@ -93,6 +93,9 @@ export default function Credits() {
                         </p>
                         <p className="text-xs text-muted-foreground mt-1">
                             across {apiKeys.length} API key{apiKeys.length !== 1 ? "s" : ""}
+                        </p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                            Total credits Used: {totalCreditsUsed}
                         </p>
                     </CardContent>
                 </Card>
