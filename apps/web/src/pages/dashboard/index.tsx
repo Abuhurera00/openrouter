@@ -168,7 +168,7 @@ export default function Dashboard() {
                             </thead>
                             <tbody>
                                 {apiKeys.slice(0, 5).map((key: ApiKeyData) => (
-                                    <tr key={key.id} className="border-b border-border/30 last:border-0">
+                                    <tr key={key._id} className="border-b border-border/30 last:border-0">
                                         <td className="px-4 py-3 font-medium">{key.name}</td>
                                         <td className="px-4 py-3 font-mono text-xs text-muted-foreground">
                                             {key.apiKey.slice(0, 12)}...{key.apiKey.slice(-4)}

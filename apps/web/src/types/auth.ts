@@ -31,6 +31,7 @@ export interface User {
   id: string;
   _id: string;
   email: string;
+  credits: number;
   createAt?: string;
   updatedAt?: string;
 }

@@ -1,14 +1,14 @@
 import { create } from "zustand";
-import { callApi } from "@/lib/callApi";
+// import { callApi } from "@/lib/callApi";
 import type { User } from "@/types/auth";
-import { authService } from "@/services/auth-service";
+// import { authService } from "@/services/auth-service";
 
 interface AuthState {
     user: User | null;
     isAuthenticated: boolean;
     isLoading: boolean;
     setUser: (user: User | null) => void;
-    fetchUser: () => Promise<void>;
+    // fetchUser: () => Promise<void>;
     logout: () => void;
 }
 
@@ -22,31 +22,32 @@ const useAuthStore = create<AuthState>((set) => ({
         set({
             user,
             isAuthenticated: !!user,
+            isLoading: false,
         }),
 
-    fetchUser: async () => {
+    // fetchUser: async () => {
 
-        set({ isLoading: true });
+    //     set({ isLoading: true });
 
-        const response = await callApi(() => authService.getMe(), {
-            showSuccess: false,
-            showError: false,
-        });
+    //     const response = await callApi(() => authService.getMe(), {
+    //         showSuccess: false,
+    //         showError: false,
+    //     });
 
-        if (response?.success) {
-            set({
-                user: response.data.user,
-                isAuthenticated: true,
-                isLoading: false,
-            });
-        } else {
-            set({
-                user: null,
-                isAuthenticated: false,
-                isLoading: false,
-            });
-        }
-    },
+    //     if (response?.success) {
+    //         set({
+    //             user: response.data,
+    //             isAuthenticated: true,
+    //             isLoading: false,
+    //         });
+    //     } else {
+    //         set({
+    //             user: null,
+    //             isAuthenticated: false,
+    //             isLoading: false,
+    //         });
+    //     }
+    // },
 
     logout: () => {
         set({
