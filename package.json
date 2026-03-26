@@ -5,7 +5,9 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "start:primary-backend": "node apps/primary-backend/dist/main.js",
+    "build:primary-backend": "turbo run build --filter=primary-backend",
     "start:api-backend": "node apps/api-backend/dist/main.js",
+    "build:api-backend": "turbo run build --filter=api-backend",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
