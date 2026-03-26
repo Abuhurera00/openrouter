@@ -18,10 +18,10 @@
   "dependencies": {
     "@nestjs/common": "^11.1.16",
     "@nestjs/mongoose": "^11.0.4",
-    "mongoose": "^8.11.0",
-    "@types/node": "^25.5.0"
+    "mongoose": "^8.11.0"
   },
   "devDependencies": {
+    "@types/node": "^25.5.0",
     "typescript": "5.9.2"
   }
 }
