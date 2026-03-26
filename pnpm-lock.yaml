@@ -378,13 +378,13 @@ importers:
       '@nestjs/mongoose':
         specifier: ^11.0.4
         version: 11.0.4(@nestjs/common@11.1.16(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.16(@nestjs/common@11.1.16(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@11.1.16)(reflect-metadata@0.2.2)(rxjs@7.8.2))(mongoose@8.23.0(gcp-metadata@8.1.2))(rxjs@7.8.2)
+      '@types/node':
+        specifier: ^25.5.0
+        version: 25.5.0
       mongoose:
         specifier: ^8.11.0
         version: 8.23.0(gcp-metadata@8.1.2)
     devDependencies:
-      '@types/node':
-        specifier: ^25.5.0
-        version: 25.5.0
       typescript:
         specifier: 5.9.2
         version: 5.9.2
