@@ -2,6 +2,7 @@ import {
     BadgeCheck,
     ChevronsUpDown,
     CreditCard,
+    Loader,
     LogOut,
 } from "lucide-react"
 
@@ -24,8 +25,12 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@workspace/ui/components/sidebar"
-import { Link } from "react-router"
+import { useNavigate } from "react-router"
 import { PATH } from "@/lib/path"
+import { useSignOutMutation } from "@/utils/api/auth/mutation"
+import { toast } from "sonner"
+import { Modal } from "./common/modal"
+import { useState } from "react"
 
 export function NavUser({
     user,
@@ -36,13 +41,27 @@ export function NavUser({
         avatar?: string
     }
 }) {
+    const navigate = useNavigate()
     const { isMobile } = useSidebar()
+    const { mutate, isPending } = useSignOutMutation({
+        onSuccess: () => {
+            navigate(PATH.LOGIN)
+        },
+        OnError: (err: any) => {
+            toast.error(err.message || "Logout failed")
+        }
+    })
+    const [logoutOpen, setLogoutOpen] = useState(false)
     const initials = user.email
         ? user.email
             .split(" ")
             .map((n) => n[0])
             .join("")
         : ""
+
+    const onClose = () => {
+        setLogoutOpen(false)
+    }
 
 
     return (
@@ -94,15 +113,36 @@ export function NavUser({
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
-                        <Link to={PATH.LOGIN}>
-                            <DropdownMenuItem>
+                        {/* // <Link to={PATH.LOGIN}> */}
+                        <DropdownMenuItem onClick={() => setLogoutOpen(true)}>
+                            {isPending ? (
+                                <Loader className="w-4 h-4 animate-spin" />
+                            ) : (
                                 <LogOut />
-                                Log out
-                            </DropdownMenuItem>
-                        </Link>
+                            )}
+                            Log out
+                        </DropdownMenuItem>
+                        {/* // </Link> */}
                     </DropdownMenuContent>
                 </DropdownMenu>
             </SidebarMenuItem>
+
+            <Modal
+                open={logoutOpen}
+                onOpenChange={(isOpen) => {
+                    if (!isOpen) onClose()
+                    setLogoutOpen(isOpen)
+                }}
+                title={"Confirm Logout"}
+                description={"Are you sure you want to log out?"}
+                onConfirm={() => {
+                    mutate()
+                    onClose()
+                }}
+                onCancel={onClose}
+                confirmLabel="Yes"
+                cancelLabel="No"
+            />
         </SidebarMenu>
     )
 }

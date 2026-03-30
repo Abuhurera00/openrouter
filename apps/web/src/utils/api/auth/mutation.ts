@@ -18,3 +18,11 @@ export function useSignUpMutation(options?: any) {
         ...options,
     });
 }
+
+export function useSignOutMutation(options?: any) {
+    return useMutation<ApiResponse, Error>({
+        mutationKey: [AUTH_TAGS.LOGOUT],
+        mutationFn: authService.logout,
+        ...options,
+    });
+}

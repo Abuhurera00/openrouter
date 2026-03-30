@@ -23,7 +23,8 @@ export const authService = {
         const response = await api.get<ApiResponse>(API_ENDPOINTS.AUTH.PROFILE);
         return response.data;
     },
-    logout: async () => {
-        await api.post(API_ENDPOINTS.AUTH.LOGOUT);
+    logout: async (): Promise<ApiResponse> => {
+        const response = await api.post<ApiResponse>(API_ENDPOINTS.AUTH.LOGOUT);
+        return response.data;
     },
 };

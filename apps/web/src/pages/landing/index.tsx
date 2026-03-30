@@ -105,14 +105,14 @@ export function Landing() {
                     </div>
 
                     <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] max-w-4xl mx-auto">
-                        One API for{" "}
+                        The Unified Interface{" "}
                         <span
                         // className="bg-clip-text text-transparent"
                         // style={{
                         //     backgroundImage: "linear-gradient(135deg, oklch(0.85 0.15 55), oklch(0.7 0.2 330), oklch(0.65 0.25 264))",
                         // }}
                         >
-                            every AI model
+                            For LLMs
                         </span>
                     </h1>
 
@@ -144,27 +144,27 @@ export function Landing() {
                             </div>
                             <pre className="p-5 text-sm font-mono leading-relaxed overflow-x-auto">
                                 <code>
-                                    <span className="text-muted-foreground">{"// Just change the base URL — that's it\n"}</span>
+                                    {/* <span className="text-muted-foreground">{"// Just change the base URL — that's it\n"}</span> */}
                                     <span className="text-blue-400">{"const "}</span>
                                     <span className="text-foreground">{"response "}</span>
                                     <span className="text-muted-foreground">{"= "}</span>
                                     <span className="text-blue-400">{"await "}</span>
-                                    <span className="text-yellow-300">{"fetch"}</span>
+                                    <span className="text-yellow-300">{"axios.post"}</span>
                                     <span className="text-foreground">{"(\n"}</span>
-                                    <span className="text-emerald-400">{'  "https://openrouter.ai/api/v1/chat"'}</span>
+                                    <span className="text-emerald-400">{'  "https://openrouter-api-backend.onrender.com/api/v1/chat"'}</span>
                                     <span className="text-foreground">{",\n  { "}</span>
-                                    <span className="text-foreground">{"method: "}</span>
+                                    {/* <span className="text-foreground">{"method: "}</span>
                                     <span className="text-emerald-400">{'"POST"'}</span>
                                     <span className="text-foreground">{",\n    body: JSON."}</span>
                                     <span className="text-yellow-300">{"stringify"}</span>
-                                    <span className="text-foreground">{"({\n"}</span>
-                                    <span className="text-foreground">{"      model: "}</span>
-                                    <span className="text-emerald-400">{'"anthropic/claude-sonnet-4-5"'}</span>
+                                    <span className="text-foreground">{"({\n"}</span> */}
+                                    <span className="text-foreground">{"\n      model: "}</span>
+                                    <span className="text-emerald-400">{'"google/gemini-3-flash-preview"'}</span>
                                     <span className="text-foreground">{",\n      messages: [{ role: "}</span>
                                     <span className="text-emerald-400">{'"user"'}</span>
                                     <span className="text-foreground">{", content: "}</span>
                                     <span className="text-emerald-400">{'"Hello!"'}</span>
-                                    <span className="text-foreground">{" }]\n    })\n  }\n)"}</span>
+                                    <span className="text-foreground">{" }]\n  }\n)"}</span>
                                 </code>
                             </pre>
                         </div>

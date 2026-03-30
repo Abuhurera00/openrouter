@@ -44,4 +44,13 @@ export class AuthController {
     async getProfile(@CurrentUser() user) {
         return this.service.getUserDetails(user._id);
     }
+
+    @UseGuards(JwtAuthGuard)
+    @Post('signout')
+    async signOut(@Res({ passthrough: true }) res: Response) {
+        res.clearCookie('auth');
+        return {
+            message: 'Signed out successfully',
+        };
+    }
 }
