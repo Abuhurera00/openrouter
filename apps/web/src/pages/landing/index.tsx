@@ -151,7 +151,7 @@ export function Landing() {
                                     <span className="text-blue-400">{"await "}</span>
                                     <span className="text-yellow-300">{"axios.post"}</span>
                                     <span className="text-foreground">{"(\n"}</span>
-                                    <span className="text-emerald-400">{'  "https://openrouter-api-backend.onrender.com/api/v1/chat"'}</span>
+                                    <span className="text-emerald-400">{'  "https://openrouter-api-backend.onrender.com/api/v1/chat/completions"'}</span>
                                     <span className="text-foreground">{",\n  { "}</span>
                                     {/* <span className="text-foreground">{"method: "}</span>
                                     <span className="text-emerald-400">{'"POST"'}</span>
