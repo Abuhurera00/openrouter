@@ -1,53 +1,331 @@
-# Turborepo starter
+# OpenRouter
 
-This Turborepo starter is maintained by the Turborepo core team.
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18-green.svg)](package.json)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg)](https://www.typescriptlang.org/)
+[![Monorepo](https://img.shields.io/badge/Monorepo-Turborepo-blue.svg)](https://turborepo.dev/)
 
-## Using this example
+A modern, scalable platform for managing and routing requests to multiple large language model (LLM) providers. OpenRouter provides a unified API interface with built-in authentication, payment processing, and comprehensive management capabilities.
 
-Run the following command:
+## Features
 
-```sh
-npx create-turbo@latest
+- 🤖 **Multi-Provider Support** - Seamlessly integrate with Anthropic Claude, Google Gemini, and other LLM providers
+- 🔐 **Authentication & Authorization** - JWT-based auth with role-based access control
+- 💳 **Payment Processing** - Built-in subscription and payment management
+- 🔑 **API Key Management** - Secure generation and management of API keys
+- 📊 **Model Management** - Centralized model configuration and versioning
+- 🚀 **Production-Ready** - Type-safe, well-tested, and monitoring-ready
+- 📦 **Monorepo Architecture** - Organized, scalable, and maintainable structure
+
+## Tech Stack
+
+### Core Technologies
+- **Language**: TypeScript 5.9
+- **Runtime**: Node.js 18+
+- **Package Manager**: pnpm 9.0.0
+- **Monorepo**: Turborepo 2.8.16
+
+### Backend
+- **Framework**: NestJS 11.x
+- **Database**: MongoDB with Mongoose
+- **Authentication**: JWT
+- **LLM SDKs**: @anthropic-ai/sdk, @google/genai
+
+### Frontend
+- **Framework**: React 19.2
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **State Management**: TanStack React Query
+- **UI Components**: Custom component library
+
+### Development
+- **Linting**: ESLint
+- **Formatting**: Prettier
+- **Testing**: Jest
+- **Type Checking**: TypeScript
+
+## Project Structure
+
+```
+openrouter/
+├── apps/
+│   ├── api-backend/          # LLM API & chat service
+│   ├── primary-backend/      # Core API (auth, payments, keys, models)
+│   └── web/                  # React frontend application
+├── packages/
+│   ├── database/             # Shared database schemas & repositories
+│   ├── ui/                   # Shared React component library
+│   ├── eslint-config/        # Shared ESLint configuration
+│   └── typescript-config/    # Shared TypeScript configuration
+└── Configuration files
 ```
 
-## What's inside?
+## Quick Start
 
-This Turborepo includes the following packages/apps:
+### Prerequisites
+- Node.js 18 or higher
+- pnpm 9.0.0
+- MongoDB instance (local or cloud)
 
-### Apps and Packages
+### Installation
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Abuhurera00/openrouter.git
+   cd openrouter
+   ```
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+2. **Install dependencies**
+   ```bash
+   pnpm install
+   ```
 
-### Utilities
+3. **Set up environment variables**
+   ```bash
+   # Copy example env files
+   cp apps/primary-backend/.env.example apps/primary-backend/.env.local
+   cp apps/api-backend/.env.example apps/api-backend/.env.local
+   cp apps/web/.env.example apps/web/.env.local
+   ```
 
-This Turborepo has some additional tools already setup for you:
+4. **Configure your environment**
+   Update `.env.local` files with your configuration:
+   - Database connection strings
+   - LLM provider API keys
+   - JWT secrets
+   - Payment processor credentials
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+5. **Start development servers**
+   ```bash
+   pnpm dev
+   ```
+   This starts all apps in watch mode. Access:
+   - Frontend: http://localhost:5173
+   - Primary Backend: http://localhost:3000
+   - API Backend: http://localhost:5000
 
-### Build
+## Usage
 
-To build all apps and packages, run the following command:
+### Development
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+```bash
+# Install dependencies
+pnpm install
 
-```sh
-cd my-turborepo
-turbo build
+# Start all apps in development mode
+pnpm dev
+
+# Build all apps and packages
+pnpm build
+
+# Run linter
+pnpm lint
+
+# Format code
+pnpm format
+
+# Type checking
+pnpm check-types
 ```
 
-Without global `turbo`, use your package manager:
+### Backend Services
 
-```sh
-cd my-turborepo
-npx turbo build
+**Primary Backend** (Port 3000)
+- Authentication endpoints
+- API key management
+- User profile management
+- Payment & subscription management
+- Model configuration
+
+**API Backend** (Port 5000)
+- Chat completion endpoints
+- Message streaming
+- LLM provider routing
+- Request logging and analytics
+
+### Building for Production
+
+```bash
+# Build specific backend
+pnpm build:primary-backend
+pnpm build:api-backend
+
+# Start production servers
+pnpm start:primary-backend
+pnpm start:api-backend
+```
+
+## API Documentation
+
+### Authentication
+
+All API requests require authentication via JWT token in the Authorization header:
+
+```bash
+Authorization: Bearer <your-jwt-token>
+```
+
+### Chat Endpoint
+
+```
+POST /api/chat/completions
+```
+
+**Request:**
+```json
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello!"
+    }
+  ],
+  "model": "claude-3-sonnet",
+  "stream": false
+}
+```
+
+**Response:**
+```json
+{
+  "id": "chat-123",
+  "object": "chat.completion",
+  "created": 1234567890,
+  "model": "claude-3-sonnet",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Hi! How can I help you?"
+      }
+    }
+  ]
+}
+```
+
+## Configuration
+
+### Environment Variables
+
+**Primary Backend:**
+```bash
+NODE_ENV=production
+DATABASE_URI=mongodb://localhost:27017/openrouter
+JWT_SECRET=your-secret-key
+JWT_EXPIRATION=24h
+PAYMENT_API_KEY=your-payment-key
+PAYMENT_WEBHOOK_SECRET=your-webhook-secret
+```
+
+**API Backend:**
+```bash
+NODE_ENV=production
+DATABASE_URI=mongodb://localhost:27017/openrouter
+ANTHROPIC_API_KEY=your-anthropic-key
+GOOGLE_GENAI_API_KEY=your-google-key
+PRIMARY_BACKEND_URL=http://primary-backend:3000
+```
+
+**Frontend:**
+```bash
+VITE_API_BASE_URL=http://localhost:3000
+```
+
+## Testing
+
+```bash
+# Run all tests
+pnpm test
+
+# Run tests in watch mode
+pnpm test:watch
+
+# Run tests with coverage
+pnpm test:cov
+
+# Run e2e tests
+pnpm test:e2e
+```
+
+## Docker Support
+
+Build and run containerized:
+
+```bash
+# Build Docker images
+docker-compose build
+
+# Start services
+docker-compose up
+```
+
+## Performance Optimization
+
+- Turborepo caching for faster builds
+- Lazy loading in frontend
+- Database indexing on frequently queried fields
+- Request/response compression
+- CDN-ready static assets
+
+## Security Practices
+
+- Environment variable validation
+- JWT token-based authentication
+- CORS configuration
+- Request validation with whitelist
+- Secure password hashing
+- Rate limiting (recommended)
+- SQL injection prevention (MongoDB with Mongoose)
+
+## Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
+- Code style and standards
+- Commit conventions
+- Pull request process
+- Testing requirements
+- Release process
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. This means:
+- ✅ You can use it for commercial purposes
+- ✅ You can modify and distribute it
+- ✅ You must include the license and copyright notice
+- ❌ No warranty or liability
+
+## Support
+
+- 📖 [Documentation](docs/)
+- 🐛 [Issue Tracker](https://github.com/Abuhurera00/openrouter/issues)
+- 💬 [Discussions](https://github.com/Abuhurera00/openrouter/discussions)
+- 📧 Email: support@openrouter.dev
+
+## Roadmap
+
+- [ ] Additional LLM provider integrations (OpenAI, Cohere, etc.)
+- [ ] Advanced analytics dashboard
+- [ ] Usage-based billing
+- [ ] API rate limiting and quotas
+- [ ] Model fine-tuning capabilities
+- [ ] Webhooks and event streaming
+- [ ] GraphQL API
+- [ ] Mobile applications
+
+## Acknowledgments
+
+- Built with [NestJS](https://nestjs.com/)
+- Powered by [Turborepo](https://turborepo.dev/)
+- UI components inspired by industry standards
+
+## Authors
+
+- Your Name - [GitHub](https://github.com/Abuhurera00)
+
+---
+
+**Made with ❤️ for the open-source community**
 yarn dlx turbo build
 pnpm exec turbo build
 ```

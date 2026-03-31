@@ -4,7 +4,7 @@
   "description": "",
   "author": "",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "dev": "nest start --watch",
     "build": "nest build",
@@ -61,6 +61,13 @@
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.20.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Abuhurera00/openrouter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Abuhurera00/openrouter/issues"
   },
   "jest": {
     "moduleFileExtensions": [
